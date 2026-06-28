@@ -15,21 +15,13 @@ html, body{
     margin:0;
     padding:0;
     width:100%;
-
-    min-height:100vh; /* importante */
+    min-height:100vh;
     overflow-x:hidden;
     overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+}
 
-    -webkit-overflow-scrolling: touch; /* suaviza no celular */
-}
-@media (max-width: 768px){
-    html, body{
-        min-height: 100vh;
-        height: auto;
-    }
-}
 body{
-
     font-family:'Press Start 2P', cursive;
     text-align:center;
     color:#C6AE77;
@@ -38,12 +30,7 @@ body{
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-
-    position:fixed;
-    width:100%;
-    height:100%;
 }
-
 /* TÍTULO */
 
 h1{
