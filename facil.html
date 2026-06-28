@@ -11,55 +11,102 @@
 
 <style>
 
-html, body{
-    margin:0;
-    padding:0;
-    width:100%;
-    min-height:100vh;
-    overflow-x:hidden;
-    overflow-y:auto;
-    -webkit-overflow-scrolling: touch;
+html, body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    font-family: 'Press Start 2P', cursive;
+    color: #C6AE77;
+
+    background-image: url("modosfacil.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-body{
-    font-family:'Press Start 2P', cursive;
-    text-align:center;
-    color:#C6AE77;
-
-    background-image:url("modosfacil.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
-/* TÍTULO */
-
-h1{
-
-    margin-top:30px;
-    font-size:18px;
-
-    color:#C6AE77;
-
-    text-shadow:
-        3px 3px 0 #0A0806,
-        0 0 6px rgba(255,180,80,.12);
-
+/* IMPORTANTE: remove comportamento fixo */
+body {
+    position: relative;
 }
 
-/* GRID */
+/* BALÃO */
+.balao {
+    background: rgba(18,14,11,.88);
+    border: 3px solid #8A6A2F;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.5);
+}
 
-.container{
-    display: grid;
-    grid-template-columns: repeat(3, 260px);
+/* GRID RESPONSIVO */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+
     justify-content: center;
-    gap: 25px;
-    padding: 40px;
+    align-items: center;
+
+    z-index: 999;
+
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-/* CARDS */
+/* JANELA DO MODAL */
+.janela {
+    background: rgba(18,14,11,.82);
+    border: 4px solid #4F4638;
 
-.card{
+    width: 90%;
+    max-width: 750px;
+    max-height: 90vh;
 
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px;
+
+    text-align: center;
+    color: #C6AE77;
+
+    box-shadow: 0 0 35px rgba(0,0,0,.80);
+
+    overflow: hidden;
+}
+
+/* ÁREA COM SCROLL */
+#conteudoModal {
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+    padding-right: 10px;
+}
+
+/* ESCONDER ELEMENTOS */
+.escondido {
+    display: none !important;
+}
+
+/* CARD */
+.card {
     background: rgba(18,14,11,.82);
     border: 4px solid #4F4638;
 
@@ -79,207 +126,188 @@ h1{
     overflow: hidden;
 
     box-sizing: border-box;
-
 }
 
-/* HOVER DOS CARDS */
-
-.card:hover{
-
-    transform:scale(1.05);
-
-    background:rgba(22,17,13,.90);
-
-    border-color:#7A6848;
-
+.card:hover {
+    transform: scale(1.05);
+    background: rgba(22,17,13,.90);
+    border-color: #7A6848;
 }
 
-/* IMAGENS */
-
-.card img{
-
+/* ÍCONE DO CARD */
+.card img {
     position: absolute;
-
     width: 120px;
     height: 120px;
 
     left: 50%;
-    top: 65%;
-
+    top: 60%;
     transform: translate(-50%, -50%);
 
     object-fit: contain;
 
-    image-rendering: pixelated;
-
     opacity: .75;
-
     filter: brightness(.75) contrast(1.15);
 
+    image-rendering: pixelated;
+
     pointer-events: none;
-
 }
-/* TEXTO */
 
-.card div{
-
+/* TEXTO DO CARD */
+.card div {
     position: relative;
-
-    z-index: 1;
-
-    margin-top: 0;
+    z-index: 2;
 
     color: #C6AE77;
-
-    text-shadow:
-        2px 2px 0 #090705;
-
-}
-/* MODAL */
-
-.modal{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:rgba(0,0,0,.45);
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:999;
-
-}
-
-/* JANELA */
-
-.janela{
-
-    background:rgba(18,14,11,.82);
-
-    border:4px solid #4F4638;
-
-    width:750px;
-
-    max-width:90%;
-
-    padding:25px;
-
-    text-align:center;
-
-    color:#C6AE77;
-
-    box-shadow:
-        0 0 35px rgba(0,0,0,.80);
-
+    text-shadow: 2px 2px 0 #090705;
 }
 
 /* SKILLS */
-
-.skills-container{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    justify-content:center;
-
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.skill{
-
-    border:2px solid #4F4638;
-
-    background:rgba(35,28,22,.85);
-
-    color:#C6AE77;
-
-    padding:7px 12px;
-
-    font-size:10px;
-
-    text-shadow:
-        1px 1px 0 #090705;
-
+.skill {
+    background: rgba(18,14,11,.85);
+    border: 2px solid #8A6A2F;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 10px;
 }
 
-/* BOTÕES */
+button {
+    background: rgba(18,14,11,.88);
+    border: 3px solid #8A6A2F;
+    color: #C6AE77;
 
-button{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
 
-    font-family:'Press Start 2P', cursive;
+    padding: 10px 14px;
 
-    background:rgba(22,17,13,.88);
+    cursor: pointer;
 
-    color:#C6AE77;
+    box-shadow: 3px 3px 0 #000;
 
-    border:4px solid #4F4638;
+    transition: .2s;
+}
 
-    padding:10px 15px;
+button:hover {
+    transform: translateY(-2px);
+    background: rgba(22,17,13,.95);
+}
 
-    cursor:pointer;
+/* IMAGENS RESPONSIVAS */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.voltar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* joga pra direita */
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 40px; /* espaço do conteúdo */
+    position: static; /* tira o fixed */
+}
+.voltar button {
+    background: rgba(18,14,11,.9);
+    border: 3px solid #8A6A2F;
+    color: #C6AE77;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.5);
+    transition: .2s;
+}
+/* ===== SCROLLBAR MEDIEVAL PIXEL ===== */
 
-    margin-top:15px;
+/* largura da barra */
+::-webkit-scrollbar {
+    width: 14px;
+}
 
-    text-shadow:
-        2px 2px 0 #090705;
+/* trilho (fundo) */
+::-webkit-scrollbar-track {
+    background: rgba(9, 7, 5, 0.95);
+    border-left: 3px solid #4F4638;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+}
 
+/* “pegador” da barra */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        to bottom,
+        #8A6A2F,
+        #6B4F1D,
+        #8A6A2F
+    );
+
+    border: 2px solid #2b2116;
+
+    /* efeito pixelado/duro */
+    border-radius: 0px;
+
+    /* sensação de relevo RPG */
     box-shadow:
-        5px 5px 0 rgba(0,0,0,.70);
-
-    transition:.2s;
-
+        inset 2px 2px 0 rgba(255, 230, 160, 0.15),
+        inset -2px -2px 0 rgba(0, 0, 0, 0.6);
 }
 
-/* HOVER DOS BOTÕES */
-
-button:hover{
-
-    background:rgba(34,27,20,.95);
-
-    border-color:#7A6848;
-
-    color:#E3C98E;
-
-    transform:scale(1.05);
-
+/* hover */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        to bottom,
+        #C6AE77,
+        #8A6A2F
+    );
 }
 
-/* VOLTAR */
-
-.voltar{
-
-    position:fixed;
-
-    bottom:20px;
-
-    right:20px;
-
+/* canto inferior da scrollbar */
+::-webkit-scrollbar-corner {
+    background: rgba(9, 7, 5, 0.95);
 }
 
-.voltar button{
 
-    background:rgba(22,17,13,.88);
+/* RESPONSIVO */
+@media (max-width: 768px) {
 
-    border:4px solid #4F4638;
+    h1 {
+        font-size: 12px;
+        margin-top: 15px;
+    }
 
-}
+    .container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
 
-/* ESCONDER */
+    .card {
+        height: 200px;
+    }
 
-.escondido{
+    .janela {
+        max-height: 85vh;
+        padding: 15px;
+        font-size: 10px;
+    }
 
-    display:none !important;
+    #conteudoModal {
+        max-height: calc(85vh - 80px);
+    }
+
+    button {
+        font-size: 10px;
+        padding: 8px 10px;
+    }
+
 
 }
 </style>
@@ -292,7 +320,7 @@ button:hover{
 
 <div class="container" id="menu">
 
-    <div class="card" onclick="abrirModal('contato')">
+    <div class="card balao" onclick="abrirModal('contato')">
         <img src="1034204.png">
         <div>CONTATO</div>
     </div>
@@ -349,13 +377,7 @@ let contatoAtual = 0;
 const contatos = [
 
 `
-<div style="
-display:flex;
-align-items:center;
-gap:20px;
-justify-content:flex-start;
-text-align:left;
-">
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
     <img src="fotodeperfil.jpg"
      style="
@@ -464,12 +486,7 @@ const experiencias = [
     </div>
 </div>
 
-<div style="
-display:flex;
-gap:20px;
-align-items:flex-start;
-margin-top:20px;
-">
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
 <img src="lavanderia.jpg"
 style="
@@ -511,14 +528,7 @@ Também auxiliava na divulgação da empresa através do Instagram, fortalecendo
         <strong>Auxiliar de Fiscalização</strong>
     </div>
 </div>
-
-<div style="
-display:flex;
-gap:20px;
-align-items:flex-start;
-margin-top:20px;
-">
-
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 <img src="campobelo.jpg"
 style="
 width:250px;
@@ -559,12 +569,7 @@ Essa experiência fortaleceu minha atenção aos detalhes, responsabilidade e co
     </div>
 </div>
 
-<div style="
-display:flex;
-gap:20px;
-align-items:flex-start;
-margin-top:20px;
-">
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
 <img src="cedis-natura.jpg"
 style="
@@ -658,7 +663,7 @@ function abrirModal(tipo){
                 ◀
             </button>
 
-            <div id="infoContato" style="min-width:450px;">
+            <div id="infoContato" style="width:100%; max-width:450px;">
                 ${contatos[0]}
             </div>
 
@@ -702,13 +707,7 @@ function abrirModal(tipo){
         </h3>
 
     </div>
-
-    <div style="
-    display:flex;
-    gap:20px;
-    align-items:flex-start;
-    ">
-
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
         <img src="campus-senac.jpg"
         style="
         width:220px;
@@ -773,11 +772,7 @@ border-radius:2px;
 
     </div>
 
-    <div style="
-    display:flex;
-    gap:20px;
-    align-items:flex-start;
-    ">
+   <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
         <img src="campus-italo.jpg"
         style="
@@ -833,7 +828,7 @@ border-radius:2px;
         ◀
         </button>
 
-        <div id="infoFormacao" style="min-width:600px;">
+        <div id="infoFormacao" style="width:100%; max-width:600px;">
             ${formacoes[0]}
         </div>
 
@@ -907,7 +902,7 @@ else if(tipo === "experiencia"){
             ◀
         </button>
 
-        <div id="infoExperiencia" style="min-width:650px;">
+        <div id="infoExperiencia" style="width:100%; max-width:650px;">
 
             <div style="display:flex;align-items:center;gap:15px;">
                 <img src="logo-lavanderia.png.jpg"
@@ -918,12 +913,7 @@ else if(tipo === "experiencia"){
                 </div>
             </div>
 
-            <div style="
-                display:flex;
-                gap:20px;
-                align-items:flex-start;
-                margin-top:20px;
-            ">
+        <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
                 <img src="lavanderia.jpg"
                      style="
@@ -1190,7 +1180,7 @@ style="visibility:hidden;">
 ◀
 </button>
 
-<div id="infoCompetencia" style="min-width:600px;">
+<div id="infoCompetencia" style="width:100%; max-width:600px;">
 ${competencias[0]}
 </div>
 
@@ -1272,11 +1262,7 @@ else if(tipo === "cursos"){
 
         </div>
 
-        <div style="
-        display:flex;
-        gap:20px;
-        align-items:flex-start;
-        ">
+<div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
 
             <img src="campus-ingles.jpg"
             style="
@@ -1327,11 +1313,9 @@ function fecharModal(){
 }
 
 
-function fecharModal(){
-
+function fecharModal() {
     document.getElementById("modal").style.display = "none";
 
-    // 🔥 VOLTA TUDO
     document.getElementById("menu").classList.remove("escondido");
     document.getElementById("titulo").classList.remove("escondido");
     document.getElementById("voltar").classList.remove("escondido");
@@ -1342,3 +1326,4 @@ function fecharModal(){
 
 </body>
 </html>
+
