@@ -14,10 +14,20 @@
 html, body{
     margin:0;
     padding:0;
-    height:100%;
-    overflow:hidden;
-}
+    width:100%;
 
+    min-height:100vh; /* importante */
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    -webkit-overflow-scrolling: touch; /* suaviza no celular */
+}
+@media (max-width: 768px){
+    html, body{
+        min-height: 100vh;
+        height: auto;
+    }
+}
 body{
 
     font-family:'Press Start 2P', cursive;
